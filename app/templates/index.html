@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CineMind · Movie Recommendation System</title>
+  <meta name="description" content="CineMind – a personalised movie recommender. Upload your own catalogue and discover what to watch next.">
+  <meta name="theme-color" content="#0b0614">
+
+  <!-- Typography: Unbounded (display) · Instrument Serif (accent) · Manrope (body) · JetBrains Mono (labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700&family=Unbounded:wght@400;600;800&display=swap">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23c84bff'/%3E%3Cpath d='M12 9l12 7-12 7z' fill='%23d4ff3a'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- Animated aurora backdrop (purely decorative) -->
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <a class="brand" href="#discover" aria-label="CineMind home">
+      <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+        <defs>
+          <linearGradient id="bm" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ff2e7e"/><stop offset=".5" stop-color="#c84bff"/><stop offset="1" stop-color="#2ee6c5"/>
+          </linearGradient>
+        </defs>
+        <circle cx="20" cy="20" r="18" fill="none" stroke="url(#bm)" stroke-width="3" stroke-dasharray="6 4"/>
+        <path d="M16 12.5l12 7.5-12 7.5z" fill="url(#bm)"/>
+      </svg>
+      <span class="brand__text">
+        <strong>CineMind</strong>
+        <small>IBM · Movie Recommendation System</small>
+      </span>
+    </a>
+
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab is-active" role="tab" data-view="discover" aria-selected="true">Discover</button>
+      <button class="tab" role="tab" data-view="library" aria-selected="false">Library</button>
+      <button class="tab" role="tab" data-view="insights" aria-selected="false">Insights</button>
+      <button class="tab" role="tab" data-view="dataset" aria-selected="false">Dataset</button>
+    </nav>
+
+    <button class="dataset-pill" id="datasetPill" type="button" data-view="dataset" title="Manage dataset">
+      <span class="dot"></span><span id="datasetPillText">Loading…</span>
+    </button>
+  </header>
+
+  <main id="main">
+    <!-- ═════════════ DISCOVER ═════════════ -->
+    <section class="view is-active" id="view-discover" aria-labelledby="heroTitle">
+      <div class="hero">
+        <p class="eyebrow">Content intelligence · TF-IDF × genre × era</p>
+        <h1 id="heroTitle">Find your next <em>obsession</em>.</h1>
+        <p class="hero__lead">Tell CineMind what you love. It reads every plot, learns your taste and ranks the rest of the catalogue — with the reasons why.</p>
+        <ul class="hero__stats" id="heroStats" aria-label="Catalogue summary"></ul>
+      </div>
+
+      <div class="workspace">
+        <!-- Taste builder -->
+        <aside class="panel taste" aria-label="Taste profile">
+          <div class="panel__head">
+            <h2>Your taste profile</h2>
+            <button class="link-btn" id="clearBtn" type="button">Reset</button>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="movieSearch"><span class="step">01</span> Movies you love</label>
+            <div class="combo">
+              <input id="movieSearch" type="search" autocomplete="off" placeholder="Search a title…" role="combobox"
+                     aria-expanded="false" aria-controls="suggestions" aria-autocomplete="list">
+              <ul class="suggestions" id="suggestions" role="listbox" hidden></ul>
+            </div>
+            <ul class="chips" id="likedChips" aria-label="Selected movies"></ul>
+            <button class="ghost-btn" id="surpriseBtn" type="button">🎲 Surprise me with a favourite</button>
+          </div>
+
+          <div class="field">
+            <span class="field__label"><span class="step">02</span> Genres <small>(any of)</small></span>
+            <div class="pills" id="genrePills" role="group" aria-label="Genres"></div>
+          </div>
+
+          <div class="field">
+            <span class="field__label"><span class="step">03</span> Era</span>
+            <div class="range">
+              <input id="yearMin" type="number" inputmode="numeric" placeholder="From" aria-label="From year">
+              <span aria-hidden="true">→</span>
+              <input id="yearMax" type="number" inputmode="numeric" placeholder="To" aria-label="To year">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="moodInput"><span class="step">04</span> Mood or theme</label>
+            <input id="moodInput" type="text" maxlength="300" placeholder="e.g. mind-bending heist, lonely robot…">
+          </div>
+
+          <button class="cta" id="recommendBtn" type="button">
+            <span>Recommend</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </aside>
+
+        <!-- Results -->
+        <section class="results" aria-labelledby="resultsTitle" aria-live="polite">
+          <div class="results__head">
+            <h2 id="resultsTitle">Your matches</h2>
+            <p class="results__meta" id="resultsMeta"></p>
+          </div>
+          <div class="empty" id="resultsEmpty">
+            <div class="empty__art" aria-hidden="true">🎬</div>
+            <h3>Nothing yet — your next favourite is waiting</h3>
+            <p>Add a few movies you love, pick genres or describe a mood, then press <strong>Recommend</strong>.</p>
+          </div>
+          <div class="grid" id="resultsGrid"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ═════════════ LIBRARY ═════════════ -->
+    <section class="view" id="view-library" aria-labelledby="libraryTitle" hidden>
+      <div class="section-head">
+        <p class="eyebrow">Browse</p>
+        <h2 id="libraryTitle">The <em>library</em></h2>
+      </div>
+      <div class="toolbar">
+        <input id="libQuery" type="search" placeholder="Search titles & plots…" aria-label="Search library">
+        <select id="libGenre" aria-label="Filter by genre"><option value="">All genres</option></select>
+        <select id="libSort" aria-label="Sort order">
+          <option value="title">A → Z</option>
+          <option value="year_desc">Newest first</option>
+          <option value="year_asc">Oldest first</option>
+        </select>
+      </div>
+      <p class="results__meta" id="libMeta"></p>
+      <div class="grid grid--compact" id="libGrid"></div>
+      <nav class="pager" id="libPager" aria-label="Pagination"></nav>
+    </section>
+
+    <!-- ═════════════ INSIGHTS ═════════════ -->
+    <section class="view" id="view-insights" aria-labelledby="insightsTitle" hidden>
+      <div class="section-head">
+        <p class="eyebrow">Analytics</p>
+        <h2 id="insightsTitle">Catalogue <em>insights</em></h2>
+      </div>
+      <div class="tiles" id="insightTiles"></div>
+      <div class="insight-grid">
+        <article class="panel"><h3>Genres</h3><div class="bars" id="genreBars"></div></article>
+        <article class="panel"><h3>Releases by decade</h3><div class="columns" id="decadeCols"></div></article>
+        <article class="panel panel--wide"><h3>Dominant themes <small>(from descriptions)</small></h3><div class="cloud" id="themeCloud"></div></article>
+      </div>
+    </section>
+
+    <!-- ═════════════ DATASET ═════════════ -->
+    <section class="view" id="view-dataset" aria-labelledby="datasetTitle" hidden>
+      <div class="section-head">
+        <p class="eyebrow">Bring your own data</p>
+        <h2 id="datasetTitle">Upload a <em>dataset</em></h2>
+      </div>
+
+      <div class="dataset-layout">
+        <div class="panel">
+          <label class="dropzone" id="dropzone" for="fileInput" tabindex="0">
+            <input id="fileInput" type="file" accept=".csv,.tsv,.txt,.json,.xlsx" hidden>
+            <div class="dropzone__icon" aria-hidden="true">⇪</div>
+            <strong>Drop your file here, or click to browse</strong>
+            <span>CSV · TSV · JSON · XLSX — up to 10&nbsp;MB</span>
+            <span class="dropzone__state" id="uploadState" role="status"></span>
+          </label>
+
+          <h3>Expected columns</h3>
+          <table class="schema">
+            <thead><tr><th>Column</th><th>Role</th><th>Also accepted as</th></tr></thead>
+            <tbody>
+              <tr><td><code>movie name</code></td><td>Required</td><td>title, name, film</td></tr>
+              <tr><td><code>movie year</code></td><td>Optional</td><td>year, release year</td></tr>
+              <tr><td><code>genre</code></td><td>Optional</td><td>genres, category — separate several with <code>|</code> or <code>,</code></td></tr>
+              <tr><td><code>desc</code></td><td>Recommended</td><td>description, plot, overview, synopsis</td></tr>
+            </tbody>
+          </table>
+          <div class="actions">
+            <a class="ghost-btn" href="/api/template.csv" download>⬇ Download CSV template</a>
+            <button class="ghost-btn ghost-btn--danger" id="resetBtn" type="button">Restore sample dataset</button>
+          </div>
+        </div>
+
+        <div class="panel" id="datasetReport" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>CineMind v{{ version }} · Flask · pandas · scikit-learn</span>
+    <span>Built as an IBM-style capstone project</span>
+  </footer>
+
+  <!-- Detail dialog -->
+  <dialog class="modal" id="movieModal" aria-labelledby="modalTitle">
+    <button class="modal__close" id="modalClose" type="button" aria-label="Close">✕</button>
+    <div class="modal__body" id="modalBody"></div>
+  </dialog>
+
+  <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</body>
+</html>

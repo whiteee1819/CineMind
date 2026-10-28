@@ -1,0 +1,8 @@
+# ── Runtime dependencies ────────────────────────────────────────────────
+Flask>=3.0,<4.0          # web framework + REST API
+pandas>=2.1              # dataset ingestion, cleaning, analytics
+numpy>=1.26              # vectorised scoring
+scipy>=1.11              # sparse matrices (used by scikit-learn)
+scikit-learn>=1.4        # TF-IDF vectoriser, normalisation, cosine maths
+openpyxl>=3.1            # optional .xlsx uploads
+waitress>=3.0            # production WSGI server (works on Windows/Linux/macOS)

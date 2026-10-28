@@ -1,0 +1,4 @@
+-r requirements.txt
+
+# ── Development / QA tooling ────────────────────────────────────────────
+pytest>=8.0
