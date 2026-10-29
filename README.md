@@ -207,11 +207,17 @@ https://your-demo-url.com
 
 # 📸 Screenshots
 
-Add screenshots of the major application sections here.
+<img width="1599" height="899" alt="WhatsApp Image 2026-10-29 at 12 45 35 PM" src="https://github.com/user-attachments/assets/26a4c5f5-38c6-4218-a1ee-ce866cd9ccb7" />
+<img width="1599" height="899" alt="p2" src="https://github.com/user-attachments/assets/9bc6e59c-6f5c-4615-9052-fab696b8996f" />
+<img width="1599" height="899" alt="p3" src="https://github.com/user-attachments/assets/2e39cbe5-c423-4391-9b17-2846ee6544a1" />
+<img width="1599" height="899" alt="p4" src="https://github.com/user-attachments/assets/482c415f-f6c8-4ea1-b8c8-983b8d854412" />
+<img width="1599" height="899" alt="p5" src="https://github.com/user-attachments/assets/5eb234fb-837f-4e82-a651-45698bf73173" />
+
+
 
 ### Discover
+<img width="1599" height="899" alt="WhatsApp Image 2026-10-29 at 12 45 35 PM" src="https://github.com/user-attachments/assets/654a3ddf-7755-4c96-935d-a7c77bb6a7a8" />
 
-**FILL THE DATA YOURSELF — Add Discover page screenshot**
 
 ```text
 ![Discover](path/to/discover-screenshot.png)
@@ -219,7 +225,8 @@ Add screenshots of the major application sections here.
 
 ### Library
 
-**FILL THE DATA YOURSELF — Add Library screenshot**
+<img width="1599" height="899" alt="p2" src="https://github.com/user-attachments/assets/acc6357b-3103-4c36-a569-ec0c1cbc74f8" />
+
 
 ```text
 ![Library](path/to/library-screenshot.png)
@@ -227,7 +234,8 @@ Add screenshots of the major application sections here.
 
 ### Insights
 
-**FILL THE DATA YOURSELF — Add Analytics screenshot**
+<img width="1599" height="899" alt="p3" src="https://github.com/user-attachments/assets/4c3adc79-ac4b-4626-832d-4e4e97490a93" />
+
 
 ```text
 ![Insights](path/to/insights-screenshot.png)
@@ -235,7 +243,8 @@ Add screenshots of the major application sections here.
 
 ### Dataset Upload
 
-**FILL THE DATA YOURSELF — Add Dataset page screenshot**
+<img width="1599" height="899" alt="p4" src="https://github.com/user-attachments/assets/be14103a-893f-44f5-9a99-95c17ac8e3d4" />
+
 
 ```text
 ![Dataset](path/to/dataset-screenshot.png)
