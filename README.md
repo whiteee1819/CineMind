@@ -569,8 +569,7 @@ Python 3.12 is the recommended version for the current project configuration.
 
 ## 1. Clone the Repository
 
-**FILL THE DATA YOURSELF — Replace this with your actual GitHub repository URL.**
-
+[GITHUB URL](https://github.com/whiteee1819/CineMind/tree/main)
 ```cmd
 git clone FILL_THE_DATA_YOURSELF
 cd FILL_THE_DATA_YOURSELF
