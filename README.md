@@ -14,7 +14,6 @@ It is designed as an **IBM-style capstone / portfolio project** demonstrating pr
 
 - [Overview](#-overview)
 - [Features](#-features)
-- [Demo](#-demo)
 - [Screenshots](#-screenshots)
 - [How It Works](#-how-it-works)
 - [Recommendation Algorithm](#-recommendation-algorithm)
@@ -187,22 +186,6 @@ If an uploaded dataset is invalid, the existing working dataset remains availabl
 
 ---
 
-# 🎥 Demo
-
-### Live Demo
-
-**FILL THE DATA YOURSELF — Add your deployed application URL here**
-
-Example:
-
-```text
-https://your-demo-url.com
-```
-
-### Repository
-
-**FILL THE DATA YOURSELF — Add your GitHub repository URL here**
-
 ---
 
 # 📸 Screenshots
@@ -220,7 +203,7 @@ https://your-demo-url.com
 
 
 ```text
-![Discover](path/to/discover-screenshot.png)
+
 ```
 
 ### Library
@@ -229,7 +212,7 @@ https://your-demo-url.com
 
 
 ```text
-![Library](path/to/library-screenshot.png)
+
 ```
 
 ### Insights
@@ -238,7 +221,7 @@ https://your-demo-url.com
 
 
 ```text
-![Insights](path/to/insights-screenshot.png)
+
 ```
 
 ### Dataset Upload
@@ -247,7 +230,7 @@ https://your-demo-url.com
 
 
 ```text
-![Dataset](path/to/dataset-screenshot.png)
+
 ```
 
 ---
