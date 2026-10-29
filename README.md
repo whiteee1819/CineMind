@@ -190,7 +190,7 @@ If an uploaded dataset is invalid, the existing working dataset remains availabl
 
 # 📸 Screenshots
 
-<img width="1599" height="899" alt="WhatsApp Image 2026-10-29 at 12 45 35 PM" src="https://github.com/user-attachments/assets/26a4c5f5-38c6-4218-a1ee-ce866cd9ccb7" />
+<img width="1599" height="899" alt="p1" src="https://github.com/user-attachments/assets/8f856547-d3e1-4ee8-81bc-8494a225c74f" />
 <img width="1599" height="899" alt="p2" src="https://github.com/user-attachments/assets/9bc6e59c-6f5c-4615-9052-fab696b8996f" />
 <img width="1599" height="899" alt="p3" src="https://github.com/user-attachments/assets/2e39cbe5-c423-4391-9b17-2846ee6544a1" />
 <img width="1599" height="899" alt="p4" src="https://github.com/user-attachments/assets/482c415f-f6c8-4ea1-b8c8-983b8d854412" />
