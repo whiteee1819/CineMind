@@ -974,11 +974,7 @@ This project demonstrates practical experience with:
 - Software architecture
 - Error handling
 - Data persistence
-- Git/GitHub workflow
-
----
----
-
+- Git/GitHub
 # ⭐ Acknowledgements
 
 **MADE WITH THE EFFORTS OF FEW PEOPLE**
